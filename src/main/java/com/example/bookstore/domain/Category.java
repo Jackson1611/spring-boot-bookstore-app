@@ -30,9 +30,6 @@ public class Category {
 	public Category() {
 	}
 
-
-	
-	
 	public Long getCategoryid() {
 		return categoryid;
 	}
@@ -59,7 +56,7 @@ public class Category {
 
 	@Override
 	public String toString() {
-	    return "Category [id=" + categoryid + ", name=" + name + "]";
+		return "Category [id=" + categoryid + ", name=" + name + "]";
 	}
 
 }

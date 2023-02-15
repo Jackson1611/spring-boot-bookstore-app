@@ -28,22 +28,20 @@ public class BookController {
 		model.addAttribute("books", brepository.findAll());
 		return "booklist";
 	}
-	
-	
-	// RESTful service to get all books
-    @RequestMapping(value="/books", method = RequestMethod.GET)
-    public @ResponseBody List<Book> bookListRest() {	
-        return (List<Book>) brepository.findAll();
-    }    
 
-    
-    // RESTful service to get book by id
-    @RequestMapping(value="/book/{id}", method = RequestMethod.GET)
-    public @ResponseBody Optional<Book> findStudentRest(@PathVariable("id") Long studentId) {	
-    	return brepository.findById(studentId);
-    }       
-    
-    // Add new book
+	// RESTful service to get all books
+	@RequestMapping(value = "/books", method = RequestMethod.GET)
+	public @ResponseBody List<Book> bookListRest() {
+		return (List<Book>) brepository.findAll();
+	}
+
+	// RESTful service to get book by id
+	@RequestMapping(value = "/book/{id}", method = RequestMethod.GET)
+	public @ResponseBody Optional<Book> findStudentRest(@PathVariable("id") Long studentId) {
+		return brepository.findById(studentId);
+	}
+
+	// Add new book
 	@RequestMapping(value = "/addbook")
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
@@ -57,19 +55,20 @@ public class BookController {
 		brepository.save(book);
 		return "redirect:booklist";
 	}
+
 	// Delete book
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String deleteBook(@PathVariable("id") Long id, Model model) {
 		brepository.deleteById(id);
 		return "redirect:../booklist";
 	}
+
 	// edit book
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String editBook(@PathVariable("id") Long id, Model model) {
-    	model.addAttribute("book", brepository.findById(id));
-    	model.addAttribute("category", crepository.findAll());
-    	return "editbook";
-    } 
-	
+	public String editBook(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("book", brepository.findById(id));
+		model.addAttribute("category", crepository.findAll());
+		return "editbook";
+	}
 
 }
