@@ -22,11 +22,11 @@ public class BookController {
 	private BookRepository brepository;
 	@Autowired
 	private CategoryRepository crepository;
-	
-	@RequestMapping(value="/login")
-    public String login() {	
-        return "login";
-    }	
+
+	@RequestMapping(value = "/login")
+	public String login() {
+		return "login";
+	}
 
 	// Show all books
 	@RequestMapping(value = { "/", "/booklist" })
@@ -71,6 +71,7 @@ public class BookController {
 	}
 
 	// edit book
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public String editBook(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("book", brepository.findById(id));

@@ -3,36 +3,35 @@ package com.example.bookstore.domain;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="UserTable")
+@Table(name = "UserTable")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, updatable = false)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false, updatable = false)
+	private Long id;
 
-    
-    @Column(name = "username", nullable = false, unique = true)
-    private String username;
+	@Column(name = "username", nullable = false, unique = true)
+	private String username;
 
-    @Column(name = "password", nullable = false)
-    private String passwordHash;
-    
-    @Column(name = "email", nullable = false)
-    private String email;
+	@Column(name = "password", nullable = false)
+	private String passwordHash;
 
-    @Column(name = "role", nullable = false)
-    private String role;
-    
-    public User() {
-    }
+	@Column(name = "email", nullable = false)
+	private String email;
 
-	public User(String username, String passwordHash, String role, String email) {
+	@Column(name = "role", nullable = false)
+	private String role;
+
+	public User() {
+	}
+
+	public User(String username, String passwordHash, String email, String role) {
 		super();
 		this.username = username;
 		this.passwordHash = passwordHash;
-		this.role = role;
 		this.email = email;
+		this.role = role;
 	}
 
 	public String getEmail() {

@@ -18,13 +18,15 @@ import com.example.bookstore.domain.UserRepository;
 public class BookstoreApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(BookstoreApplication.class);
+
 	public static void main(String[] args) {
 
 		SpringApplication.run(BookstoreApplication.class, args);
 	}
 
 	@Bean
-	public CommandLineRunner demo(BookRepository brepository, CategoryRepository crepository, UserRepository urepository ) {
+	public CommandLineRunner demo(BookRepository brepository, CategoryRepository crepository,
+			UserRepository urepository) {
 		return (args) -> {
 
 			crepository.save(new Category("Novel"));
@@ -37,13 +39,14 @@ public class BookstoreApplication {
 					crepository.findByName("Comic").get(0)));
 			brepository.save(new Book("The Lord of the Rings", "J.R.R. Tolkien", 1954, "9780544003415", 19.99,
 					crepository.findByName("Fiction").get(0)));
-			
-			
-			User user1 = new User("user",  "locvjp123", "USER","user1@gmail.com");
-			User user2 = new User("admin", "locvjp123", "ADMIN","user2@gmail.com");
+
+			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6",
+					"user1@gmail.com", "USER");
+			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C",
+					"user2@gmail.com", "ADMIN");
 			urepository.save(user1);
 			urepository.save(user2);
-			
+
 			log.info("fetch all students");
 			for (Book book : brepository.findAll()) {
 				log.info(book.toString());
