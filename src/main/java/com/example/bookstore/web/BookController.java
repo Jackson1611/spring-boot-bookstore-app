@@ -51,7 +51,7 @@ public class BookController {
 	@RequestMapping(value = "/addbook")
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
-		model.addAttribute("departments", crepository.findAll());
+		model.addAttribute("category", crepository.findAll());
 		return "addbook";
 	}
 
